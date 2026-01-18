@@ -1,34 +1,41 @@
-# PROGRAMMING I PORTFOLIO 2016 - 2017
-## TESSA VU (vutessa.tv@gmail.com)
-Skyline High School
+# Programming I Portfolio
 
-Project programmed with Bryn Esperson and Nastassja Motro.
+## Chess: DC vs. Marvel
 
-Contributed with designing graphics for chess pieces with Adobe Illustrator and Adobe Photoshop, programming the special castling movement on the king and rook, and programming the start menu and end menus on Processing.
+**Tessa Vu** \| 2017\
+*With Bryn Esperson and Nastassja Motro*
 
-https://tessavu.github.io/Programming-I-Portfolio/
-## OUR GAME
+------------------------------------------------------------------------
 
-We have decided to create a chess game using the Java language. But we made this so that this would be running on the Processing app as it is good to use when dealing with graphics. This program is just supposed to replicate the design of a chess game like one you would find on an app on your phone or on the computer. It's not as fancy with as many special effects as some other games but it still has many cool features.
+## Overview
 
-## BASIC RULES
+We created a Chess game using Java and Processing. This program replicates a chess game interface similar to mobile or desktop chess applications, featuring a unique Marvel vs. DC theme with custom character pieces and special effects.
 
-Chess is a two player game. One person controls one set of peices (black pieces) and the other player controls the opposite set of pieces (white pieces). Players cannot switch set of pieces midgame. The goal of the game is to get the other player's king into checkmate.
+------------------------------------------------------------------------
 
-### CHECK, CHECKMATE, AND STALEMATE
+## Basic Rules
 
-* Check - When the king of a player can be taken by a piece of the opponent, one says that the king is in check. It is not allowed to make a move, such that ones king is in check after the move.
+Chess is a two-player game where one player controls the black pieces and the other controls the white pieces. Players cannot switch pieces mid-game. The goal is to checkmate the opponent's King.
 
-* Checkmate - When a player is in check, and he cannot make a move such that after the move, the king is not in check, then he is mated. The player that is mated loses the game, and the player that mates him wins the game.
+### Check, Checkmate, and Stalemate
 
-* Stalemate - When a player cannot make any legal move, but he is not in check, then the player is said to be stalemated. In a case of a stalemate, the game is a draw.
+-   **Check** – When a King can be captured by an opponent's piece, the King is in check. Players must move to get out of check.
 
-## STARTER
-The game starts off with a main menu screen. We decided to create a theme based game. The theme is Marvel vs. DC with Marvel being the white designated set of pieces and DC being the black designated set of pieces. As soon as the game is opened, the starter menu will pop open.
+-   **Checkmate** – When a player is in check and cannot make any legal move to escape, they are checkmated and lose the game.
 
-**Start menu code:**
+-   **Stalemate** – When a player has no legal moves but is not in check, the game ends in a draw.
 
-```javascript
+------------------------------------------------------------------------
+
+## Game Flow
+
+### Starter Menu
+
+The game opens with a themed main menu featuring Marvel vs. DC, where Marvel represents white pieces and DC represents black pieces.
+
+**Code for Starter Menu:**
+
+``` javascript
 PImage startmenu;
 PFont title;
 PFont description;
@@ -52,22 +59,24 @@ void draw() {
   textFont(description);
   text("PRESS ANY KEY TO START THE GAME", width/2, 450);
   }
-``` 
+```
 
-### Start menu:
+**Start Menu:**
 
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/versus.png "Logo Title Text 1")
+![Start Menu](versus.png)
 
-## GAME
+------------------------------------------------------------------------
 
-In Chess, the white set (in this case the Marvel pieces) is always first to move. Movement is required every round. A player may not opt to skip his or her turn ever.
+### Main Game
 
-**Main chess game entry point code:**
+White (Marvel) always moves first. Movement is required every turn—players cannot skip their turn.
 
-```javascript
+**Code for Main Chess Game Entry Point:**
+
+``` javascript
 public class Chess {
   public static void main(String[] args) {
-    private Board board = new Board();
+s    private Board board = new Board();
     private Player marvel;
     private Player dc;
     public Chess() {
@@ -113,24 +122,31 @@ public class Chess {
 }
 ```
 
-## PLAYING SCREEN
+------------------------------------------------------------------------
 
-#### Playing screen:
-  The first is an example of the mockup using the actual pictures of the characters.
-  
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/figuresmockup.png "Logo Title Text 1")
+### Playing Screen
 
-  But the game will actually utilize the logos of each of the characters as seen below.
-  
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/logosmockup.png "Logo Title Text 1")
+The game board displays with themed character pieces.
+
+**Mockup with character images:**
+
+![Figures Mockup](https://nastassjamotro.github.io/Programming-1-Portfolio/figuresmockup.png)
+
+**Actual gameplay with character logos:**
+
+![Logos Mockup](https://nastassjamotro.github.io/Programming-1-Portfolio/logosmockup.png)
+
+------------------------------------------------------------------------
+
+## Game Components
 
 ### Board
 
-A chessboard is a type of checkerboard. It consists of 64 squares (eight rows and eight columns). The squares are arranged in two alternating colors (light and dark).
+A standard 8×8 checkerboard with alternating light and dark squares.
 
-**Board code:**
+**Code for Board:**
 
-```javascript
+``` javascript
 public class Board {
   private Spot[][] spots = new Spot[8][8];
   public Board() {
@@ -147,13 +163,15 @@ public class Board {
 }
 ```
 
+------------------------------------------------------------------------
+
 ### Spot
 
-Pieces other than pawns capture in the same way they move. A capturing peice replaces the opponent's piece on its square, except for an _en passant_ capture. Captured pieces are immediately removed from the game. A square may hold ony one piece at any given time. 
+Each square on the board can hold only one piece at a time. Captured pieces are immediately removed from the game.
 
-**Spot code:**
+**Code for Spot:**
 
-```javascript
+``` javascript
 apublic class Spot {
   int x, y;
   Piece piece;
@@ -188,13 +206,15 @@ apublic class Spot {
 }
 ```
 
-## PLAYERS
+------------------------------------------------------------------------
 
-Chess involves two players. Players take turns alternating moving one piece at a time (except in the case of the castle maneuver).
+### Players
 
-**Player code:**
+Two players alternate turns, moving one piece at a time (except during castling).
 
-```javascript
+**Code for Player:**
+
+``` javascript
 public class Player {
   public final int PAWNS = 8;
   public final int BISHOPS = 2;
@@ -243,13 +263,25 @@ public class Player {
 }
 ```
 
-## PIECES
+------------------------------------------------------------------------
 
-All the separate chess piece classes in this game use inheritance from the class Piece below. There are a total of sixteen pieces per player: one king, one queen, two bishops, two knights, two rooks, and eight pawns. Each player controls their own set and may not play or use the other player's set.
+## Pieces
 
-**Main piece class code:**
+Each player has 16 pieces: 1 King, 1 Queen, 2 Bishops, 2 Knights, 2 Rooks, and 8 Pawns. All piece classes inherit from the base `Piece` class.
 
-```javascript
+### Character Assignments
+
+**DC Team:** - **Martian Manhunter** – King - **Wonder Woman** – Queen - **Supergirl** – Bishop - **Batman** – Knight - **Superman** – Rook - **Flash** – Pawn
+
+**Marvel Team:** - **Captain America** – King - **Captain Marvel** – Queen - **Black Widow** – Bishop - **Wolverine** – Knight - **Iron Man** – Rook - **Hawkeye** – Pawn
+
+------------------------------------------------------------------------
+
+### Base Piece Class
+
+**Code for Main Piece Class:**
+
+``` javascript
 public abstract class Piece {
   private boolean available;
   private int x;
@@ -293,79 +325,17 @@ public abstract class Piece {
 }
 ```
 
-### DC (black) characters:
+------------------------------------------------------------------------
 
-* Martian Manhunter - as the king.
+## Movement Rules
 
-* Wonder Woman - as the queen.
+### King
 
-* SuperGirl - as the bishop.
+Moves one square in any direction (horizontal, vertical, or diagonal). Can perform castling with a Rook under specific conditions. Must never move into check.
 
-* Batman - as the knight.
+**Code for King Piece with Castling Move:**
 
-* Superman - as the rook.
-
-* Flash - as the pawn.
-
-### Marvel (white) characters:
-
-* Captain America - as the king.
-
-* Captain Marvel - as the queen.
-
-* Black Widow - as the bishop.
-
-* Wolverine - as the knight.
-
-* Iron Man - as the rook.
-
-* Hawkeye - as the pawn.
-
-## PIECE RULES
-
-* King - The king moves only one square in any direction: horizontally, vertically, or diagonally. The king can do a special move called castling but it may only be done with the use of the rook. The king is the most important piece of the game, and moves must be made in such a way that the king is never in check. If in check, the king must move and not any other piece.
-
-* Queen - The queen has combined moves of the rook and bishop so i.e. it can move horizontally, diagonally, and vertically.
-
-* Bishop - The bishop moves diagonally and only on the color it starts off on. It may not jump over pieces.
-
-* Knight - The knight makes a move that consists of first one step in a horizontal or vertical direction, and then one step diagonally in an outward direction.
-
-* Rook - The rook moves in a straight line, whether it's horizontal movement or vertical. It cannot move diagonally.
-
-* Pawn - The pawn moves differently regarding whether it moves to an empty square or wheter it takes a piece of the opponent. When a pawn does not take, it moves one square forward. When the pawn has not moved at all, i.e., the pawn is still at the second row (from the owning player's view), the pawn may make a double step straight forward. When taking, a pawn goes one square diagonally forward.
-
-### Special Moves:
-
-#### Castling - Under certain, special rules, a king and rook can move simultaniously in a castling move. The following conditions must be met:
-
-- The king that makes the castling move has not yet moved in the game.
-  
-- The rook that makes the castling move has not yet moved in the game.
-
-- The king is not in check.
-
-- The king does not move over a square that is attacked by an enemy piece during the castling move, i.e., when castling, there may not be an enemy piece that can move (in case of pawns: by diagonal movement) to a square that is moved over by the king.
-
-- The king does not move to a square that is attacked by an enemy piece during the castling move, i.e., you may not castle and end the move with the King in check.
-
-- All squares between the rook and king before the castling move are empty.
-
-- The king and rook must occupy the same rank (or row).
-
-- When castling, the king moves two squares towards the rook, and the rook moves over the king to the next square.
-
-#### _En passant_ - This is perhaps the most obscure and least used move in chess is called _en passant_.
-
-- It can only occur when a player excersizes his option to move his pawn two squares on its initial movement and that move places his pawn next to the opponent's pawn.
-
-- When this happens, the opposing player has the option to use his pawn to take the moved pawn "en passant" or "in passing" as if the pawn had only moved one square.
-
-- This option, though, only stays open for one move.
-
-**King with castling code:**
-
-```javascript
+``` javascript
 public class King extends Piece {
   public booelan moved;
   public boolean castle;
@@ -408,9 +378,15 @@ castle = true;
 return true;
 ```
 
-**Queen code:**
+------------------------------------------------------------------------
 
-```javascript
+### Queen
+
+Combines Rook and Bishop movement—can move horizontally, vertically, or diagonally any number of squares.
+
+**Code for Queen Piece:**
+
+``` javascript
 public class Queen extends Piece {
   public Queen(boolean available, int x, int y) {
     super(available, x, y);
@@ -436,9 +412,15 @@ public class Queen extends Piece {
 }
 ```
 
-**Bishop code:**
+------------------------------------------------------------------------
 
-```javascript
+### Bishop
+
+Moves diagonally any number of squares. Stays on the same color square it starts on. Cannot jump over pieces.
+
+**Code for Bishop Piece:**
+
+``` javascript
 public class Bishop extends Piece {
   public Bishop(boolean available, int x, int y) {
     super(available, x, y);
@@ -457,9 +439,15 @@ public class Bishop extends Piece {
 }
 ```
 
-**Knight code:** 
+------------------------------------------------------------------------
 
-```javascript
+### Knight
+
+Moves in an L-shape: one step horizontal or vertical, then one step diagonally outward. Can jump over other pieces.
+
+**Code for Knight Piece:**
+
+``` javascript
 public class Knight extends Piece {
   public Knight(boolean available, int x, int y) {
     super(available, x, y);
@@ -481,9 +469,15 @@ public class Knight extends Piece {
 }
 ```
 
-**Rook with castling code:**
+------------------------------------------------------------------------
 
-```javascript
+### Rook
+
+Moves in straight lines horizontally or vertically. Cannot move diagonally. Can participate in castling.
+
+**Code for Rook Piece with Castling Move:**
+
+``` javascript
 public class Rook extends Piece {
   public boolean moved;
   public boolean castle;
@@ -533,9 +527,15 @@ castle = true;// moved = true;
 return true;
 ```
 
-**Pawn with _En Passant_ code:**
+------------------------------------------------------------------------
 
-```javascript
+### Pawn
+
+Moves forward one square (or two on its first move). Captures diagonally forward one square. Can perform en passant capture.
+
+**Code for Pawn Piece with En Passant Move:**
+
+``` javascript
 public class Pawn extends Piece {
   public boolean hasMoved;
   public boolean ep_able;
@@ -581,13 +581,43 @@ public class Pawn extends Piece {
 }
 ```
 
-## END MENU
+------------------------------------------------------------------------
 
-Chess ends as soon as one player get the opponent's king in checkmate, or when the game ends in a draw. As soon as this happends, the screen will change from the chessboard graphics to an end game graphic.
+## Special Moves
 
-**Marvel Wins:**
+### Castling
 
-```javascript
+A simultaneous King and Rook move under these conditions:
+
+-   Neither the King nor Rook has moved previously
+-   The King is not in check
+-   The King does not move through or into check
+-   All squares between King and Rook are empty
+-   King and Rook are on the same rank
+
+When castling: the King moves two squares toward the Rook, and the Rook moves over the King to the adjacent square.
+
+------------------------------------------------------------------------
+
+### En Passant
+
+A special pawn capture move:
+
+-   Occurs when an opponent's pawn moves two squares forward on its initial move, landing beside your pawn
+-   You can capture it as if it had only moved one square
+-   This option is only available for one move immediately after the opponent's pawn move
+
+------------------------------------------------------------------------
+
+## End Game
+
+The game ends when a player achieves checkmate or the game reaches a draw (stalemate).
+
+### Marvel Wins
+
+**Code for Marvel Winning:**
+
+``` javascript
 PImage gameover;
 PFont title;
 PFont description;
@@ -613,13 +643,16 @@ void draw() {
   text("YOU ARE NOW A LOSER", width/2, 450);
 }
 ```
-**Photo:**
 
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/marvelwins.png "Logo Title Text 1")
+![Marvel Wins](marvelwins.png)
 
-**DC Wins:**
+------------------------------------------------------------------------
 
-```javascript
+### DC Wins
+
+**Code for DC Winning:**
+
+``` javascript
 PImage gameover;
 PFont title;
 PFont description;
@@ -646,45 +679,15 @@ void draw() {
 }
 ```
 
-**Photo:**
+![DC Wins](dcwins.png)
 
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/dcwins.png "Logo Title Text 1")
+------------------------------------------------------------------------
 
-**Victory code:**
+### Draw
 
-```javascript
-PImage win;
-PFont title;
-PFont description;
-int screenX, screenY, stage;
+**Code for Draw:**
 
-void setup() {
-  size(1920, 1080);
-  screenX = round(width);
-  screenY = round(height);
-  size(screenX, screenY);
-  win = loadImage("Versus.png");
-  image(win, 0, 0, screenX, screenY);
-  title = createFont("Anurati-Regular", 80, true);
-  description = createFont("Anurati-Regular", 30, true);
-}
-
-void draw() {
-  textAlign(CENTER);
-  textFont(title);
-  text("VICTORY", width/2, 400);
-  textFont(description);
-  text("YOU ARE A WINNER", width/2, 450);
-}
-```
-
-**Photo:**
-
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/win.png "Logo Title Text 1")
-
-**Draw/Stalemate code:**
-
-```javascript
+``` javascript
 PImage gameover;
 PFont title;
 PFont description;
@@ -711,6 +714,6 @@ void draw() {
 }
 ```
 
-**Photo:**
+![Draw](draw.png)
 
-![alt text](https://nastassjamotro.github.io/Programming-1-Portfolio/draw.png "Logo Title Text 1")
+------------------------------------------------------------------------
